@@ -1,0 +1,21 @@
+name: Clover51 Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      variant:
+        description: "Which app to build"
+        type: choice
+        options:
+          - support
+          - desk
+        default: support
+
+jobs:
+  build:
+    uses: ./.github/workflows/clover51-flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: "clover51"
+      variant: ${{ inputs.variant }}
