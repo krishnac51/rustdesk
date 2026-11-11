@@ -1,0 +1,12 @@
+name: RustDesk medycheck Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/preconfig-flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: "medycheck"
