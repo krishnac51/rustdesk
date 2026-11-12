@@ -40,6 +40,10 @@ def main():
           f'pub const RS_PUB_KEY: &str = "{key}";')
     patch("src/common.rs", '    "https://admin.rustdesk.com".to_owned()\n',
           f'    "{API_SERVER}".to_owned()\n')
+    # No "Download new version" banner: it links to the official build,
+    # which has none of these settings. Updates come from our own server.
+    patch("src/common.rs", "pub fn check_software_update() {\n    if is_custom_client() {\n",
+          "pub fn check_software_update() {\n    if true {\n")
     print("medycheck server settings applied")
 
 
